@@ -1,48 +1,28 @@
-const Intern = require("./intern");
-const team = require("./team");
+// const Intern = require("./intern");
+// const team = require("./team");
 
-const intern1 = new Intern("Jared", 3);
-const intern2 = new Intern("Alec", 1);
-const intern3 = new Intern("Grace", 2);
-const intern4 = new Intern("Tammer", 2);
-const intern5 = new Intern("John", 2);
+// const intern1 = new Intern("Jared");
+// const intern2 = new Intern("Alec");
+// const intern3 = new Intern("Grace");
+// const intern4 = new Intern("Tammer");
+// const intern5 = new Intern("John");
 
-const team = new team();
+// const team = new team();
 
-team.addIntern(intern1);
-team.addIntern(intern2);
-team.addIntern(intern3);
-team.addIntern(intern4);
-team.addIntern(intern5);
+// team.addIntern(intern1);
+// team.addIntern(intern2);
+// team.addIntern(intern3);
+// team.addIntern(intern4);
+// team.addIntern(intern5);
 
 
-console.log(team.teamMate);
-console.log("\n");
+// console.log(team.teamMate);
+// console.log("\n");
 
-const child4 = new Child("Jared", 1);
-dayCare.addChild(child4);
+// const newEmployee = new teamMate("Jared");
+// dayCare.addChild(child4);
 
-// Capacity reached, child not added
-console.log(team.children);
-console.log("\n");
 
-dayCare.pickupChild("Tammer");
-
-// Tammer is no longer at daycare
-console.log(dayCare.children);
-console.log("\n");
-
-// Able to add Rosie now
-dayCare.addChild(child4);
-console.log(dayCare.children);
-console.log("\n");
-
-dayCare.pickupChild("Alec");
-
-// Jan not added, he's above the age limit
-const child5 = new Child("Jan", 20);
-dayCare.addChild(child5);
-console.log(dayCare.children);
 
 
 // const Vehicle = require('./vehicle');
@@ -79,3 +59,39 @@ console.log(dayCare.children);
 // boat.printInfo();
 // boat.useHorn();
 // boat.crewSoundOff();
+
+const inquirer = require('inquirer');
+const fs = require('fs');
+
+inquirer
+  .prompt([
+    {
+        type: 'input',
+        name: 'managers name',
+        message: 'What is manager name?',
+      },
+    {
+      type: 'input',
+      name: 'employees name',
+      message: 'What is your name?',
+    },
+    {
+      type: 'input',
+      name: 'employee id',
+      message: 'What is the employee id?',
+    },
+    {
+        type: 'input',
+        name: 'office number',
+        message: 'What is the office number?',
+      },
+ 
+  ])
+  .then((data) => {
+    const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
+
+    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+      err ? console.log(err) : console.log('Success!')
+    );
+  });
+ // the team manager’s name, employee ID, email address, and office number
